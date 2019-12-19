@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components'
 
 import Header from './components/Header'
 import CardStack from './components/CardStack'
+
+
+
 
 const Container = styled.div`
 
@@ -35,13 +38,15 @@ const Main = styled.div`
 
 
 
-
 const App = props => {
+
+  const [difficulty, setDifficulty] = useState("easy")
+
   return (
     <Container>
       <Header />
       <Main>
-        <CardStack/>
+          <CardStack />
       </Main>
     </Container>
   );

@@ -20,12 +20,24 @@ const Container = styled.div`
 
 const Logo = styled.img`
     height: 60px;
+    margin: 0 10px;
+`
+
+const Title = styled.h1`
+    color: rgb(113, 19, 11);
+    font-family: 'Crimson Text', serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin: 0;
+    align-self: flex-end;
 `
 
 export default function Header(props) {
     return (
         <Container>
+            <Title>Ruby</Title>
             <Logo src={logo} />
+            <Title>Enumerators</Title>
         </Container>
     )
 }
