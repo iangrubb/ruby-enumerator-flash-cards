@@ -8,6 +8,7 @@ import CardStack from './components/CardStack'
 
 
 
+
 const Container = styled.div`
 
   height: 100vh;
@@ -46,7 +47,7 @@ const App = props => {
     <Container>
       <Header />
       <Main>
-          <CardStack />
+          <CardStack key={difficulty} difficulty={difficulty} setDifficulty={setDifficulty}/>
       </Main>
     </Container>
   );

@@ -124,6 +124,20 @@ const methodData = {
         methodReturnValue: "",
         example: ""},
 
+        {name: "drop_while",
+        effect: "",
+        description: "",
+        blockReturnType: "",
+        methodReturnValue: "",
+        example: ""},
+
+        {name: "take_while",
+        effect: "",
+        description: "",
+        blockReturnType: "",
+        methodReturnValue: "",
+        example: ""},
+
 
 
     ], hard: [
@@ -136,20 +150,6 @@ const methodData = {
         example: ""},
 
         {name: "each_slice",
-        effect: "",
-        description: "",
-        blockReturnType: "",
-        methodReturnValue: "",
-        example: ""},
-
-        {name: "drop_while",
-        effect: "",
-        description: "",
-        blockReturnType: "",
-        methodReturnValue: "",
-        example: ""},
-
-        {name: "take_while",
         effect: "",
         description: "",
         blockReturnType: "",

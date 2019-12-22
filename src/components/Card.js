@@ -31,14 +31,18 @@ const Container = styled.div`
 
 
     &:hover {
-        ${props => props.animationState === "exited" ? "transform: translateY(-10px)" : null};
+        ${props => props.animationState === "exited" ? "transform: translate(4px, -10px)" : null};
     }
     
+    z-index: 3;
+
     animation: ${props => props.animationState === "entering" || props.animationState === "entered" ? baseStyleAnimation : baseStyleAnimationRev} 0.2s linear;
     animation-fill-mode: both;
     
     transform: scale(${props => props.animationState === "entering" || props.animationState === "entered" ? '1.1' : '1'});
     transition: transform 0.2s ease-in-out;
+
+    
     
 
 `
@@ -179,20 +183,26 @@ export default function Card(props) {
 
   const [tab, setTab] = useState("function")
 
-    const toggleSelected = () => {
+  const [fresh, setFresh] = useState(true)
 
-      if (props.selected) {
-        props.setSelected(null)
-      } else {
-        setTab("function")
-        props.setSelected(props.order)
-      }
-    }
+  const toggleSelected = () => {
 
-    const chooseTab = (tab) => (event) => {
-      event.stopPropagation()
-      setTab(tab)
+    if (props.selected) {
+      props.setSelected(null)
+    } else {
+      
+
+      setTab("function")
+      setFresh(false)
+      props.setSelected(props.order)
+      
     }
+  }
+
+  const chooseTab = (tab) => (event) => {
+    event.stopPropagation()
+    setTab(tab)
+  }
 
 
     return (
@@ -208,6 +218,7 @@ export default function Card(props) {
                     horizontalTimingFunction={'ease-in-out'}
                     verticalTimingFunction={'ease-in-out'}
                     zAnimation={animationState === "entering" || animationState === "entered" ? baseStyleAnimation : baseStyleAnimationRev}
+                    fresh={fresh}
                 >
                     <Container animationState={animationState} order={props.order} onClick={toggleSelected}>
                         <Title>{props.card.name}</Title>

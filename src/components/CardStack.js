@@ -24,6 +24,8 @@ const Box = styled.div`
     position: relative;
 
 
+
+
 `
 
 const Front = styled.div`
@@ -87,20 +89,19 @@ export default function CardStack(props) {
 
     const [selected, setSelected] = useState(null)
 
-    const [difficulty, setDifficulty] = useState("easy")
-
-    const cards = methodData[difficulty]
+    const cards = methodData[props.difficulty]
 
     return (
         <Container>
             <ButtonRow>
-                <DifficultyButton selected={difficulty === "easy"} onClick={()=>setDifficulty("easy")}>Basic</DifficultyButton>
-                <DifficultyButton selected={difficulty === "medium"} onClick={()=>setDifficulty("medium")}>Intermediate</DifficultyButton>
-                <DifficultyButton selected={difficulty === "hard"} onClick={()=>setDifficulty("hard")}>Advanced</DifficultyButton>
+                <DifficultyButton selected={props.difficulty === "easy"} onClick={()=>props.setDifficulty("easy")}>Basic</DifficultyButton>
+                <DifficultyButton selected={props.difficulty === "medium"} onClick={()=>props.setDifficulty("medium")}>Intermediate</DifficultyButton>
+                <DifficultyButton selected={props.difficulty === "hard"} onClick={()=>props.setDifficulty("hard")}>Advanced</DifficultyButton>
             </ButtonRow>
             <Box cardCount={cards.length}>
-            {cards.map((card, idx) => <Card key={card.name} card={card} order={idx} selected={selected === idx} setSelected={setSelected} />)}
             <Front cardCount={cards.length} />
+            {cards.map((card, idx) => <Card key={card.name} card={card} order={idx} selected={selected === idx} setSelected={setSelected} />)}
+            
             </Box>
         </Container>
     )
