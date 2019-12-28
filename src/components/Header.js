@@ -6,7 +6,7 @@ import logo from '../ruby.png'
 
 const Container = styled.div`
     width: 100%;
-    height: 80px;
+    height: 70px;
     background: rgb(247, 255, 249);
 
     box-shadow: 0px 2px 20px 4px rgba(0, 0, 0, 0.4);
@@ -19,17 +19,17 @@ const Container = styled.div`
 `
 
 const Logo = styled.img`
-    height: 60px;
-    margin: 0 10px;
+    height: 40px;
+    margin: 0 14px 0 10px;
 `
 
 const Title = styled.h1`
     color: rgb(113, 19, 11);
     font-family: 'Crimson Text', serif;
     font-weight: bold;
-    font-size: 36px;
+    font-size: 32px;
     margin: 0;
-    align-self: flex-end;
+    align-items: baseline;
 `
 
 export default function Header(props) {

@@ -25,7 +25,7 @@ const Container = styled.div`
 
 const Main = styled.div`
 
-  height: calc(100vh - 80px);
+  height: calc(100vh - 60px);
   width: 100vw;
 
   overflow: scroll;
