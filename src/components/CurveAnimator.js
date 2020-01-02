@@ -5,18 +5,27 @@ import styled from 'styled-components'
 
 const Horizontal = styled.div`
 
-    animation: ${props => props.horizontalAnimation} ${props=> props.duration}s ${props => props.horizontalTimingFunction},
+    animation: ${props => props.horizontalAnimation} ${props=> props.duration}s,
     ${props => props.zAnimation} ${props=> props.duration}s ${props => props.zTimingFunction};
     
     z-index: 3;
     animation-fill-mode: both;
     position: absolute;
+
+    width: 100%;
+
+    @media (max-width: 600px) {
+        animation: ${props => props.horizontalAnimationMobile} ${props=> props.duration}s,
+        ${props => props.zAnimation} ${props=> props.duration}s ${props => props.zTimingFunction};
+        animation-fill-mode: both;
+    }
 `
 
 const Vertical = styled.div`
 
-    animation: ${props => props.verticalAnimation} ${props => props.duration}s ${props => props.verticalTimingFunction};
+    animation: ${props => props.verticalAnimation} ${props => props.duration}s;
     animation-fill-mode: both;
+    width: 100%;
 `
 
 export default function CurveAnimator(props) {
@@ -26,14 +35,12 @@ export default function CurveAnimator(props) {
             <Horizontal
             duration={props.duration / 1000}
             horizontalAnimation={'none'}
-            horizontalTimingFunction={props.horizontalTimingFunction}
             zAnimation={'none'}
-            zTimingFunction={props.verticalTimingFunction}
+            zTimingFunction={props.zTimingFunction}
             >
             <Vertical
                 duration={props.duration / 1000}
                 verticalAnimation={'none'}
-                verticalTimingFunction={props.verticalTimingFunction}
 
             >
                 {props.children}
@@ -44,14 +51,12 @@ export default function CurveAnimator(props) {
             <Horizontal
             duration={props.duration / 1000}
             horizontalAnimation={props.horizontalAnimation}
-            horizontalTimingFunction={props.horizontalTimingFunction}
             zAnimation={props.zAnimation}
-            zTimingFunction={props.verticalTimingFunction}
+            zTimingFunction={props.zTimingFunction}
             >
             <Vertical
                 duration={props.duration / 1000}
                 verticalAnimation={props.verticalAnimation}
-                verticalTimingFunction={props.verticalTimingFunction}
 
             >
                 {props.children}

@@ -11,16 +11,25 @@ const Container = styled.div`
 
     box-shadow: 0px 2px 20px 4px rgba(0, 0, 0, 0.4);
 
-    z-index: 2;
+    z-index: 8;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 600px) {
+        height: 42px;
+    }
+
 `
 
 const Logo = styled.img`
     height: 40px;
     margin: 0 14px 0 10px;
+
+    @media (max-width: 600px) {
+        height: 32px;
+    }
 `
 
 const Title = styled.h1`
@@ -28,8 +37,13 @@ const Title = styled.h1`
     font-family: 'Crimson Text', serif;
     font-weight: bold;
     font-size: 32px;
+    
     margin: 0;
     align-items: baseline;
+
+    @media (max-width: 600px) {
+        font-size: 24px;
+    }
 `
 
 export default function Header(props) {

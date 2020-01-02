@@ -5,45 +5,50 @@ import { Transition } from "react-transition-group"
 
 import CurveAnimator from './CurveAnimator'
 
+import ReactMarkdown from 'react-markdown';
+import CodeBlock from "./CodeBlock";
+
+
+
 
 const Container = styled.div`
 
-    height: 200px;
-    min-height: 200px;
-    width: 280px;
+  height: 240px;
 
-    margin: 20px;
+  max-height: 240px;
 
-    background: rgb(247, 255, 249);
-
-    border-radius: 4px;
-
-    box-shadow: 2px 2px 40px 10px rgba(0, 0, 0, 0.4);
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    position: absolute;
-    top: ${props => (props.order * 60) - 60}px;
-    left: -10px;
+  width: 96%;
 
 
-    &:hover {
-        ${props => props.animationState === "exited" ? "transform: translate(4px, -10px)" : null};
-    }
-    
-    z-index: 3;
+  background: rgb(247, 255, 249);
 
-    animation: ${props => props.animationState === "entering" || props.animationState === "entered" ? baseStyleAnimation : baseStyleAnimationRev} 0.2s linear;
-    animation-fill-mode: both;
-    
-    transform: scale(${props => props.animationState === "entering" || props.animationState === "entered" ? '1.1' : '1'});
-    transition: transform 0.2s ease-in-out;
+  border-radius: 4px;
 
-    
-    
+  box-shadow: 2px 2px 40px 10px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  position: absolute;
+  top: ${props => (props.order * 60) - 60}px;
+  left: 2%;
+
+
+  &:hover {
+      ${props => props.animationState === "exited" ? "transform: translate(4px, -10px)" : null};
+  }
+  
+  z-index: 3;
+
+  animation: ${props => props.animationState === "entering" || props.animationState === "entered" ? baseStyleAnimation : baseStyleAnimationRev} 0.2s linear;
+  animation-fill-mode: both;
+  
+  transform: scale(${props => props.animationState === "entering" || props.animationState === "entered" ? '1.1' : '1'});
+  transition: transform 0.2s ease-in;
+
+  
 
 `
 
@@ -51,6 +56,12 @@ const Container = styled.div`
 const horizontalAnimation = keyframes`
   0% {
     transform: translateX(0);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: translateX(40px);
+    animation-timing-function: ease-out;
   }
 
   100% {
@@ -61,6 +72,44 @@ const horizontalAnimation = keyframes`
 const horizontalAnimationRev = keyframes`
   0% {
     transform: translateX(100px);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: translateX(40px);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+`;
+
+const horizontalAnimationMobile = keyframes`
+  0% {
+    transform: translateX(0);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: translateX(10px);
+    animation-timing-function: ease-out;
+  }
+
+  100% {
+    transform: translateX(10px);
+  }
+`;
+
+const horizontalAnimationRevMobile = keyframes`
+  0% {
+    transform: translateX(10px);
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    transform: translateX(10px);
+    animation-timing-function: ease-out;
   }
 
   100% {
@@ -71,10 +120,12 @@ const horizontalAnimationRev = keyframes`
 const verticalAnimation = keyframes`
   0% {
     transform: translateY(0);
+    animation-timing-function: cubic-bezier(.07,.42,.3,.45);;
   }
 
-  60% {
-    transform: translateY(-180px);
+  50% {
+    transform: translateY(-200px);
+    animation-timing-function: ease-out;
   }
 
   100% {
@@ -85,10 +136,12 @@ const verticalAnimation = keyframes`
 const verticalAnimationRev = keyframes`
   0% {
     transform: translateY(-60px);
+    animation-timing-function: cubic-bezier(.07,.42,.3,.45);
   }
 
-  40% {
-    transform: translateY(-180px);
+  50% {
+    transform: translateY(-200px);
+    animation-timing-function: ease-out;
   }
 
   100% {
@@ -96,12 +149,16 @@ const verticalAnimationRev = keyframes`
   }
 `;
 
+
+
+
+
 const baseStyleAnimation = keyframes`
-  0% {
+  0%, 50% {
     z-index: 3;
   }
 
-  50%, 100% {
+  100% {
     z-index: 5;
   }
 
@@ -127,7 +184,7 @@ const Title = styled.h2`
 
     font-size: 1.4em;
 
-    margin: 10px 20px;
+    margin: 10px 20px 0 20px;
 
     align-self: flex-start;
 
@@ -174,7 +231,27 @@ const TabButton = styled.button`
     outline: none;
   }
 
+`
 
+const Body = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  width: 92%;
+`
+
+const Usage = styled.div`
+  text-align: center;
+  
+`
+
+
+const Example = styled(ReactMarkdown)`
+
+  overflow: scroll;
+
+  margin: 0;
+
+  font-size: 14px;
+  font-family: 'Courier Prime', monospace;
 `
 
 
@@ -190,18 +267,31 @@ export default function Card(props) {
     if (props.selected) {
       props.setSelected(null)
     } else {
-      
-
       setTab("function")
       setFresh(false)
       props.setSelected(props.order)
-      
     }
   }
 
   const chooseTab = (tab) => (event) => {
     event.stopPropagation()
     setTab(tab)
+  }
+
+
+
+  const bodyDisplay = tab => {
+
+    switch (tab) {
+      case "function":
+        return <Usage>{props.card.effect}</Usage>
+      case "details":
+        return
+      case "example":
+        return <Example source={props.card.example} renderers={{code: CodeBlock}}/>
+      default:
+        return ""
+    }
   }
 
 
@@ -212,23 +302,21 @@ export default function Card(props) {
                 // state change: exited -> entering -> entered -> exiting -> exited
 
                 <CurveAnimator
-                    duration={400}
+                    duration={300}
                     horizontalAnimation={animationState === "entering" || animationState === "entered" ? horizontalAnimation : horizontalAnimationRev}
                     verticalAnimation={animationState === "entering" || animationState === "entered" ? verticalAnimation : verticalAnimationRev}
-                    horizontalTimingFunction={'ease-in-out'}
-                    verticalTimingFunction={'ease-in-out'}
+                    horizontalAnimationMobile={animationState === "entering" || animationState === "entered" ? horizontalAnimationMobile : horizontalAnimationRevMobile}
+                    zTimingFunction={'linear'}
                     zAnimation={animationState === "entering" || animationState === "entered" ? baseStyleAnimation : baseStyleAnimationRev}
                     fresh={fresh}
                 >
                     <Container animationState={animationState} order={props.order} onClick={toggleSelected}>
                         <Title>{props.card.name}</Title>
 
-
-
-
+                        <Body>{bodyDisplay(tab)}</Body>
 
                         <TabRow>
-                            <TabButton onClick={chooseTab("function")} selected={tab === "function"}>Function</TabButton>
+                            <TabButton onClick={chooseTab("function")} selected={tab === "function"}>Usage</TabButton>
                             <TabButton onClick={chooseTab("details")} selected={tab === "details"}>Details</TabButton>
                             <TabButton onClick={chooseTab("example")} selected={tab === "example"}>Example</TabButton>
                         </TabRow>

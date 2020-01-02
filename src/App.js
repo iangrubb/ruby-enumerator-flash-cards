@@ -34,6 +34,10 @@ const Main = styled.div`
   flex-direction: column;
   align-items: center;
 
+  @media (max-width: 600px) {
+    height: calc(100vh - 42px);
+  }
+
 
 `
 

@@ -2,18 +2,24 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Card from './Card'
+import Dropdown from './Dropdown'
 
 import methodData from '../methodData'
 
 const Container = styled.div`
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    width: 100%;
 
 `
 
 const Box = styled.div`
 
     margin: 60px 0 20px 0;
-
-    width: 300px;
 
     border: solid black 20px;
 
@@ -23,81 +29,47 @@ const Box = styled.div`
 
     position: relative;
 
-
-
+    width: 84%;
+    max-width: 420px;
 
 `
 
 const Front = styled.div`
     background: black;
-    width: 320px;
-    height: 180px;
+    width: 104%;
+    height: 200px;
 
     box-shadow: 2px 2px 40px 10px rgba(0, 0, 0, 0.4);
 
     position: absolute;
     left: 0;
-    top: ${props => props.cardCount * 60 - 30}px;
+    top: ${props => props.cardCount * 60 - 40}px;
     z-index: 4;
 `
-
-const ButtonRow = styled.div`
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin: 60px 0;
-
-`
-
-const DifficultyButton = styled.button`
-
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-
-    color: rgb(113, 19, 11);
-    background: rgb(247, 255, 249);
-
-    margin: 0 4px;
-
-    border-radius: 4px;
-    padding: 6px 12px;
-
-    transform: translateY(-${props => props.selected ? '0' : '2'}px);
-    transition: transform 0.05s linear, box-shadow 0.05s linear;
-  
-    box-shadow: ${props => props.selected ? '0 0 0' : '1px 2px 1px'} rgba(1, 1, 1, 0.6);
-
-    :hover {
-        cursor: ${props => props.selected ? 'auto' : 'pointer'};
-    }
-
-    :focus {
-        outline: none;
-    }
-    
-
-`
-
 
 
 
 
 export default function CardStack(props) {
 
-    const [selected, setSelected] = useState(null)
+    const [selected, setSelected] = useState("easy")
 
     const cards = methodData[props.difficulty]
 
+    const options = [
+        {name: "Basic", onClick: ()=>props.setDifficulty("easy")},
+        {name: "Intermediate", onClick: ()=>props.setDifficulty("medium")},
+        {name: "Advanced", onClick: ()=>props.setDifficulty("hard")}
+    ]
+
+    const selectables = ["easy", "medium", "hard"]
+
+
     return (
         <Container>
-            <ButtonRow>
-                <DifficultyButton selected={props.difficulty === "easy"} onClick={()=>props.setDifficulty("easy")}>Basic</DifficultyButton>
-                <DifficultyButton selected={props.difficulty === "medium"} onClick={()=>props.setDifficulty("medium")}>Intermediate</DifficultyButton>
-                <DifficultyButton selected={props.difficulty === "hard"} onClick={()=>props.setDifficulty("hard")}>Advanced</DifficultyButton>
-            </ButtonRow>
+
+            <Dropdown title="Difficulty" selection={selectables.indexOf(props.difficulty)} options={options} />
+
             <Box cardCount={cards.length}>
             <Front cardCount={cards.length} />
             {cards.map((card, idx) => <Card key={card.name} card={card} order={idx} selected={selected === idx} setSelected={setSelected} />)}
