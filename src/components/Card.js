@@ -296,13 +296,13 @@ export default function Card(props) {
 
 
     return (
-        <Transition in={props.selected} timeout={500} >
+        <Transition in={props.selected} timeout={400} >
 
             {animationState => (
                 // state change: exited -> entering -> entered -> exiting -> exited
 
                 <CurveAnimator
-                    duration={300}
+                    duration={400}
                     horizontalAnimation={animationState === "entering" || animationState === "entered" ? horizontalAnimation : horizontalAnimationRev}
                     verticalAnimation={animationState === "entering" || animationState === "entered" ? verticalAnimation : verticalAnimationRev}
                     horizontalAnimationMobile={animationState === "entering" || animationState === "entered" ? horizontalAnimationMobile : horizontalAnimationRevMobile}
