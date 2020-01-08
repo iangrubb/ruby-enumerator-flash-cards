@@ -120,7 +120,7 @@ const horizontalAnimationRevMobile = keyframes`
 const verticalAnimation = keyframes`
   0% {
     transform: translateY(0);
-    animation-timing-function: cubic-bezier(.07,.42,.3,.45);;
+    animation-timing-function: cubic-bezier(.07,.42,.3,.45);
   }
 
   50% {
