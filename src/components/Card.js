@@ -120,7 +120,7 @@ const horizontalAnimationRevMobile = keyframes`
 const verticalAnimation = keyframes`
   0% {
     transform: translateY(0);
-    animation-timing-function: cubic-bezier(.07,.42,.3,.45);;
+    animation-timing-function: cubic-bezier(.07,.42,.3,.45);
   }
 
   50% {
@@ -182,7 +182,7 @@ const Title = styled.h2`
 
     font-family: 'Crimson Text', serif;
 
-    font-size: 1.4em;
+    font-size: 24px;
 
     margin: 10px 20px 0 20px;
 
@@ -201,7 +201,7 @@ const TabRow = styled.div`
   justify-content: space-evenly;
   align-items: center;
 
-  margin: 8px 0;
+  margin: 0 0 16px 0;
 
 `
 
@@ -216,7 +216,7 @@ const TabButton = styled.button`
 
   border: 2px solid rgb(113, 19, 11);
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 8px 12px;
 
   transform: translateY(-${props => props.selected ? '0' : '2'}px);
   transition: transform 0.05s linear, box-shadow 0.05s linear;
@@ -235,23 +235,64 @@ const TabButton = styled.button`
 
 const Body = styled.div`
   font-family: 'Open Sans', sans-serif;
+
+  height: 96%;
   width: 92%;
+
+  margin: 0 0 16px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const Usage = styled.div`
   text-align: center;
+
+  font-size: 18px;
   
 `
-
 
 const Example = styled(ReactMarkdown)`
 
   overflow: scroll;
 
+  width: 100%;
+
   margin: 0;
 
   font-size: 14px;
   font-family: 'Courier Prime', monospace;
+`
+
+const Details = styled.div`
+
+  height: 90%;
+  width: 90%;
+
+  font-size: 14px;
+
+  overflow: scroll;
+`
+
+const Note = styled.span`
+
+  display: block;
+
+  margin: 6px 0 0 0;
+
+
+`
+
+const SmallHeading = styled.span`
+
+  font-size: 14px;
+  font-weight: 700;
+
+  margin: 0 4px 0 0;
+
+  color: rgb(113, 19, 11);
+
 `
 
 
@@ -267,7 +308,6 @@ export default function Card(props) {
     if (props.selected) {
       props.setSelected(null)
     } else {
-      setTab("function")
       setFresh(false)
       props.setSelected(props.order)
     }
@@ -286,7 +326,12 @@ export default function Card(props) {
       case "function":
         return <Usage>{props.card.effect}</Usage>
       case "details":
-        return
+        return (<Details>
+                  {props.card.description}
+                  {props.card.blockReturnValue ? <Note><SmallHeading>The block returns</SmallHeading>{props.card.blockReturnValue}</Note> : null}
+                  {props.card.methodReturnValue ? <Note><SmallHeading>The method returns</SmallHeading>{props.card.methodReturnValue}</Note> : null}
+                  {props.card.notes ? <Note><SmallHeading>Notes:</SmallHeading>{props.card.notes}</Note> : null}
+               </Details>)
       case "example":
         return <Example source={props.card.example} renderers={{code: CodeBlock}}/>
       default:
