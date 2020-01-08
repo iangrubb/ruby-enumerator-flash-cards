@@ -199,7 +199,7 @@ const TabRow = styled.div`
   justify-content: space-evenly;
   align-items: center;
 
-  margin: 8px 0;
+  margin: 8px 0 16px 0;
 
 `
 
@@ -245,6 +245,8 @@ const Body = styled.div`
 const Usage = styled.div`
   text-align: center;
 
+  width: 90%;
+
   font-size: 18px;
   
 `
@@ -263,10 +265,9 @@ const Example = styled(ReactMarkdown)`
 
 const Details = styled.div`
 
-  height: 90%;
   width: 90%;
+  max-height: 160px;
 
-  font-size: 14px;
 
   overflow: scroll;
 `
@@ -282,7 +283,6 @@ const Note = styled.span`
 
 const SmallHeading = styled.span`
 
-  font-size: 14px;
   font-weight: 700;
 
   margin: 0 4px 0 0;
@@ -326,7 +326,7 @@ export default function Card(props) {
                   {props.card.description}
                   {props.card.blockReturnValue ? <Note><SmallHeading>The block returns</SmallHeading>{props.card.blockReturnValue}</Note> : null}
                   {props.card.methodReturnValue ? <Note><SmallHeading>The method returns</SmallHeading>{props.card.methodReturnValue}</Note> : null}
-                  {props.card.notes ? <Note><SmallHeading>Notes:</SmallHeading>{props.card.notes}</Note> : null}
+                  {props.card.notes ? <Note><SmallHeading>Note:</SmallHeading>{props.card.notes}</Note> : null}
                </Details>)
       case "example":
         return <Example source={props.card.example} renderers={{code: CodeBlock}}/>
