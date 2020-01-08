@@ -19,11 +19,11 @@ const Container = styled.div`
 
 const Box = styled.div`
 
-    margin: 60px 0 20px 0;
+    margin: 60px 0 40px 0;
 
     border: solid black 20px;
 
-    height: ${props => props.cardCount * 60 + 140}px;
+    height: ${props => props.cardCount * 60 + 180}px;
 
     background: gray;
 
@@ -37,7 +37,7 @@ const Box = styled.div`
 const Front = styled.div`
     background: black;
     width: 104%;
-    height: 200px;
+    height: 240px;
 
     box-shadow: 2px 2px 40px 10px rgba(0, 0, 0, 0.4);
 

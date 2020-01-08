@@ -13,9 +13,7 @@ import CodeBlock from "./CodeBlock";
 
 const Container = styled.div`
 
-  height: 240px;
-
-  max-height: 240px;
+  height: 300px;
 
   width: 96%;
 
@@ -46,7 +44,7 @@ const Container = styled.div`
   animation-fill-mode: both;
   
   transform: scale(${props => props.animationState === "entering" || props.animationState === "entered" ? '1.1' : '1'});
-  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, height 0.2s ease;
 
   
 
@@ -195,13 +193,13 @@ const Title = styled.h2`
 const TabRow = styled.div`
 
   width: 100%;
-  height: 20%;
+  height: 16%;
 
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 
-  margin: 0 0 16px 0;
+  margin: 8px 0;
 
 `
 
@@ -221,7 +219,7 @@ const TabButton = styled.button`
   transform: translateY(-${props => props.selected ? '0' : '2'}px);
   transition: transform 0.05s linear, box-shadow 0.05s linear;
   
-  box-shadow: ${props => props.selected ? '0 0 0' : '1px 2px 1px'} rgba(1, 1, 1, 0.6);
+  box-shadow: ${props => props.selected ? '0 0 0' : '2px 2px 1px'} rgba(1, 1, 1, 0.6);
 
   :hover {
     cursor: ${props => props.selected ? 'auto' : 'pointer'};
@@ -236,10 +234,8 @@ const TabButton = styled.button`
 const Body = styled.div`
   font-family: 'Open Sans', sans-serif;
 
-  height: 96%;
+  height: 60%;
   width: 92%;
-
-  margin: 0 0 16px 0;
 
   display: flex;
   justify-content: center;
