@@ -59,8 +59,8 @@ const methodData = {
         example: "```\nnumbers = [1, 2, 3, 4]\nnumbers.all?{|number| number.even?}\n# => false"},
         
         {name: "any?",
-        effect: "Determine whether any elements in an array satisfy some condition",
-        description: "Executes the code block for each element in the initial array. Returns true just in case at least one makes the block return true.",
+        effect: "Determine whether any element in an array satisfies some condition",
+        description: "Executes the code block for each element in the initial array. Returns true just in case at least one element makes the block return true.",
         blockReturnValue: "a boolean value.",
         methodReturnValue: "a boolean value.",
         notes: null,
@@ -75,20 +75,20 @@ const methodData = {
         example: "```\nnumbers = [1, 2, 3, 4]\nnumbers.one?{|number| number.even?}\n# => false"},
 
         {name: "count",
-        effect: "Determine how many elements in the array satsify some condition",
+        effect: "Determine how many elements in an array satsify some condition",
         description: "Executes the code block for each element in the initial array. Returns the number of elements that make the block return true.",
         blockReturnValue: "a boolean value.",
         methodReturnValue: "an integer.",
         notes: null,
         example: "```\nnumbers = [1, 2, 3, 4]\nnumbers.count{|number| number.even?}\n# => 2"},
         
-
+        
     ], medium: [
 
         {name: "max_by",
         effect: "Find the element in the array that maximizes some attribute",
         description: "Executes the code block for each element and compares the return values. Returns the element that makes the block return the greatest value.",
-        blockReturnValue: "values to be compared in order to choose a maximum.",
+        blockReturnValue: "a value used for comparison.",
         methodReturnValue: "an element from the initial array.",
         notes: null,
         example: "```\nstrings = ['a', 'few', 'test', 'strings']\nstrings.max_by{|string| string.length}\n# => 'strings'"},
@@ -96,7 +96,7 @@ const methodData = {
         {name: "min_by",
         effect: "Find the element in the array that minimizes some attribute",
         description: "Executes the code block for each element and compares the return values. Returns the element that makes the block return the least value.",
-        blockReturnValue: "values to be compared in order to choose a minimum.",
+        blockReturnValue: "a value used for comparison.",
         methodReturnValue: "an element from the initial array.",
         notes: null,
         example: "```\nstrings = ['a', 'few', 'test', 'strings']\nstrings.min_by{|string| string.length}\n# => 'a'"},
@@ -104,7 +104,7 @@ const methodData = {
         {name: "sort_by",
         effect: "Sort the elements of the array according to some attribute",
         description: "Executes the code block for each element and compares the return values. Returns a sorting of the initial array based on the order of the returned values from least to greatest.",
-        blockReturnValue: "values to be compared in order to sort the initial array.",
+        blockReturnValue: "a value used for comparison.",
         methodReturnValue: "a sorting of the initial array.",
         notes: null,
         example: "```\nnumbers = [-2, 0, 2, 1, -1]\nnumbers.sort_by{|number| -number}\n# => [2, 1, 0, -1, -2]"},
@@ -128,12 +128,12 @@ const methodData = {
         effect: "Construct a new array based on a one-to-many mapping from an initial array",
         description: "Uses the code block to map each element from the initial array to a new array of elements, all of which will be added to a single returned array.",
         blockReturnValue: "an array of elements.",
-        methodReturnValue: "the concatination of all arrays returned by executing the code block.",
+        methodReturnValue: "the concatenation of all arrays returned by executing the code block.",
         notes: null,
         example: "```\nnumbers = [1, 2, 3]\nnumbers.flat_map do |number|\n    [number, -number]\nend\n# => [1, -1, 2, -2, 3, -3]"},
 
         {name: "partition",
-        effect: "Partition the elements of an array based on whether they satisfy some condition",
+        effect: "Divide the elements of an array based on whether they satisfy some condition",
         description: "Uses the code block to partition the elements of the initial array based on whether they make the code block return true or false. Returns these elements sorted into two arrays.",
         blockReturnValue: "a boolean value.",
         methodReturnValue: "an array of two arrays.",

@@ -176,17 +176,17 @@ const baseStyleAnimationRev = keyframes`
 
 const Title = styled.h2`
 
-    color: rgb(113, 19, 11);
+  color: rgb(113, 19, 11);
 
-    font-family: 'Crimson Text', serif;
+  font-family: 'Crimson Text', serif;
 
-    font-size: 24px;
+  font-size: 24px;
 
-    margin: 10px 20px 0 20px;
+  margin: 10px 20px 0 20px;
 
-    align-self: flex-start;
+  align-self: flex-start;
 
-    cursor: pointer;
+  cursor: pointer;
 
 `
 
@@ -324,7 +324,7 @@ export default function Card(props) {
       case "details":
         return (<Details>
                   {props.card.description}
-                  {props.card.blockReturnValue ? <Note><SmallHeading>The block returns</SmallHeading>{props.card.blockReturnValue}</Note> : null}
+                  {props.card.blockReturnValue ? <Note><SmallHeading>The block should return</SmallHeading>{props.card.blockReturnValue}</Note> : null}
                   {props.card.methodReturnValue ? <Note><SmallHeading>The method returns</SmallHeading>{props.card.methodReturnValue}</Note> : null}
                   {props.card.notes ? <Note><SmallHeading>Note:</SmallHeading>{props.card.notes}</Note> : null}
                </Details>)
