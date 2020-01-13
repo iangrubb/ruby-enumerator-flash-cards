@@ -13,7 +13,8 @@ import CodeBlock from "./CodeBlock";
 
 const Container = styled.div`
 
-  height: 300px;
+  height: fit-content;
+  min-height: 300px;
 
   width: 96%;
 
@@ -44,7 +45,7 @@ const Container = styled.div`
   animation-fill-mode: both;
   
   transform: scale(${props => props.animationState === "entering" || props.animationState === "entered" ? '1.1' : '1'});
-  transition: transform 0.2s ease-in, height 0.2s ease;
+  transition: transform 0.2s ease-in;
 
   
 
@@ -234,12 +235,12 @@ const TabButton = styled.button`
 const Body = styled.div`
   font-family: 'Open Sans', sans-serif;
 
-  height: 60%;
   width: 92%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
 `
 
 const Usage = styled.div`
@@ -266,10 +267,8 @@ const Example = styled(ReactMarkdown)`
 const Details = styled.div`
 
   width: 90%;
-  max-height: 160px;
 
 
-  overflow: scroll;
 `
 
 const Note = styled.span`
